@@ -19,10 +19,21 @@
   box-sizing: border-box;
 }
 
+html,
 body {
   margin: 0;
-  background: var(--pixel-bg);
+  background: var(--pixel-bg) !important;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+body {
   font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
 }
 
 /* Notched-corner "pixel UI" look (à la pixelactui.com), done with a
@@ -57,9 +68,9 @@ body {
    here repaints everything pink regardless of what the shadcn "Nova"
    preset set by default. */
 :root {
-  --success: #18835e;
+  --success: #4caf7d;
   --success-foreground: #ffffff;
-  --destructive: #d73895;
+  --destructive: #e05a5a;
   --destructive-foreground: #ffffff;
   --warning: #f4b942;
   --warning-foreground: #4a2036;
