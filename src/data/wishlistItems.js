@@ -95,7 +95,7 @@ export const defaultWishlist = [
     id: 14,
     name: 'Notebooks for writing or sketch books, any small/ medium would be great',
     url: null,
-    image: 'https://placehold.co/300x300/ffd3e8/b8256e?text=Item+3',
+    image: '/images/Untitled design.png',
     price: 2,
   },
   {
@@ -116,7 +116,7 @@ export const defaultWishlist = [
     id: 17,
     name: 'Fav Mascara (£18.40 - £23)',
     url: 'https://www.boots.com/kylie-cosmetics-wisp-lash-mascara-black-12ml-10341803',
-    image: 'hhttps://tse1.mm.bing.net/th/id/OIP.5y05GVwiUyFc0l37tqIlFAHaHa?r=0&pid=Api&h=220&P=0',
+    image: 'https://tse1.mm.bing.net/th/id/OIP.5y05GVwiUyFc0l37tqIlFAHaHa?r=0&pid=Api&h=220&P=0',
     price: 3,
   },
   {

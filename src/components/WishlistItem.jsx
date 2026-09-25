@@ -1,51 +1,61 @@
-import { Pixel } from '@react-pixel-ui/react';
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardContent,
+  CardFooter,
+} from '@/components/ui/pixelact-ui/card';
+import { Button } from '@/components/ui/pixelact-ui/button';
 import PriceBadge from './PriceBadge';
 
 export default function WishlistItem({ item, onSetPurchased }) {
   const { name, url, image, price, purchased } = item;
 
   return (
-    <Pixel size={4}>
-      <div className={`item-card ${purchased ? 'item-card-purchased' : ''}`}>
+    <Card className={`item-card ${purchased ? 'item-card-purchased' : ''}`}>
         <div className="item-image-wrap">
           <img src={image} alt={name} className="item-image" />
         </div>
 
-        <div className="item-body">
-          <div className="item-header">
-            <h3 className="item-name">{name}</h3>
+          <CardHeader className="item-header">
+            <CardTitle className="item-name">{name}</CardTitle>
             <PriceBadge tier={price} />
-          </div>
+          </CardHeader>
 
           {url && (
-            <a
-              href={url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="item-link"
-            >
-              View item ↗
-            </a>
+            <CardContent className="item-content">
+              <a
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="item-link"
+              >
+                View item ↗
+              </a>
+            </CardContent>
           )}
 
-          <div className="item-buttons">
-            <button
-              className={`item-mark ${purchased ? 'item-mark-active' : ''}`}
+          <CardFooter className="item-buttons">
+            <Button
+              variant="success"
+              size="sm"
+              className="item-mark"
               onClick={() => onSetPurchased(item.id, true)}
               disabled={purchased}
             >
               Mark
-            </button>
-            <button
-              className={`item-unmark ${!purchased ? 'item-unmark-active' : ''}`}
+            </Button>
+            <Button
+              variant="destructive"
+              size="sm"
+              className="item-unmark"
               onClick={() => onSetPurchased(item.id, false)}
               disabled={!purchased}
             >
               Unmark
-            </button>
-          </div>
-        </div>
-      </div>
-    </Pixel>
+            </Button>
+          </CardFooter>
+        </Card>
+
   );
 }

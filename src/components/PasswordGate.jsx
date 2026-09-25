@@ -1,5 +1,15 @@
 import { useState } from 'react';
-import { Pixel } from '@react-pixel-ui/react';
+import { Button } from '@/components/ui/pixelact-ui/button';
+import { Input } from '@/components/ui/pixelact-ui/input';
+import { Label } from '@/components/ui/pixelact-ui/label';
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardFooter,
+} from '@/components/ui/pixelact-ui/card';
 import './PasswordGate.css';
 
 // Change this to your real secret word.
@@ -23,28 +33,37 @@ export default function PasswordGate({ onUnlock }) {
 
   return (
     <div className="gate-screen">
-      <Pixel size={5}>
         <form
           className={`gate-card ${shake ? 'gate-shake' : ''}`}
           onSubmit={handleSubmit}
         >
-          <h1 className="gate-title">✦♥ Birthday WIshlist ♥✦</h1>
-          <p className="gate-subtitle">Whats the secret word? ( ͠° ͟ʖ ͡°) </p>
-          <input
-            className="gate-input"
-            type="text"
-            value={value}
-            onChange={(e) => setValue(e.target.value)}
-            placeholder="secret word..."
-            autoFocus
-          />
-          <Pixel size={3}>
-            <button type="submit" className="gate-button">
-              Unlock
-            </button>
-          </Pixel>
+          <Card className = "gate-card">
+            <CardHeader>
+              <CardTitle className="gate-title">✦♥ Birthday WIshlist ♥✦</CardTitle>
+              <CardDescription className="gate-subtitle">
+                Whats the secret word? ( ͠° ͟ʖ ͡°) 
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="gate-content">
+              <Label htmlFor="secret-word">Secret word</Label>
+              <Input
+                id="secret-word"
+                className="gate-input"
+                type="text"
+                value={value}
+                onChange={(e) => setValue(e.target.value)}
+                placeholder="secret word..."
+                autoFocus
+              />
+            </CardContent>
+    
+            <CardFooter className="gate-footer">
+              <Button type="submit" variant="secondary" className="gate-submit">
+                Unlock
+              </Button>
+            </CardFooter>
+          </Card>
         </form>
-      </Pixel>
     </div>
   );
 }

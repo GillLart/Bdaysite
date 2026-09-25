@@ -24,3 +24,73 @@ body {
   background: var(--pixel-bg);
   font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
 }
+
+/* Notched-corner "pixel UI" look (à la pixelactui.com), done with a
+   pure CSS clip-path — no extra library needed. Add `.pixel-corners`
+   to any box, plus `.pixel-corners-sm` for a smaller notch on
+   buttons/badges/inputs. Works together with a normal `border`. */
+.pixel-corners {
+  --notch: 6px;
+  border-radius: 0;
+  clip-path: polygon(
+    0 var(--notch),
+    var(--notch) var(--notch),
+    var(--notch) 0,
+    calc(100% - var(--notch)) 0,
+    calc(100% - var(--notch)) var(--notch),
+    100% var(--notch),
+    100% calc(100% - var(--notch)),
+    calc(100% - var(--notch)) calc(100% - var(--notch)),
+    calc(100% - var(--notch)) 100%,
+    var(--notch) 100%,
+    var(--notch) calc(100% - var(--notch)),
+    0 calc(100% - var(--notch))
+  );
+}
+
+.pixel-corners-sm {
+  --notch: 3px;
+}
+
+/* Pixelact UI theme override — these are the raw CSS variables the
+   real Pixelact Button/Card/Input read directly, so redefining them
+   here repaints everything pink regardless of what the shadcn "Nova"
+   preset set by default. */
+:root {
+  --success: #18835e;
+  --success-foreground: #ffffff;
+  --destructive: #d73895;
+  --destructive-foreground: #ffffff;
+  --warning: #f4b942;
+  --warning-foreground: #4a2036;
+  --color-secondary: #ff5da2;
+  --color-secondary-foreground: #ffffff;
+  --link: #b8256e;
+  --default-inner-border-color: #ffd3e8;
+  --ring: #b8256e;
+
+  /* This is the outer chunky "outline" you see on every Card and
+     Button — it's black by default in Pixelact's own styles.css.
+     Redefining it here repaints that outline pink everywhere. */
+  --pixel-box-shadow: calc(-1 * (var(--box-shadow-width))) 0 0 0
+      var(--pixel-accent-dark),
+    var(--box-shadow-width) 0 0 0 var(--pixel-accent-dark),
+    0 var(--box-shadow-width) 0 0 var(--pixel-accent-dark),
+    0 calc(-1 * (var(--box-shadow-width))) 0 0 var(--pixel-accent-dark);
+}
+
+/* Belt-and-braces: Card and Input use Tailwind's bg-card/bg-background
+   utilities rather than a plain CSS var, and Tailwind v4 can resolve
+   those at build time — so a runtime variable override above might
+   not always reach them. Setting the property directly here guarantees
+   it does. */
+.gate-card,
+.item-card {
+  background: var(--pixel-card) !important;
+  color: var(--pixel-text) !important;
+}
+
+.gate-input {
+  background: var(--pixel-bg) !important;
+  color: var(--pixel-text) !important;
+}

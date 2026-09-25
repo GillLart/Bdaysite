@@ -16,6 +16,8 @@
   font-size: 22px;
   color: var(--pixel-accent-dark);
   margin: 0 0 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
 .wishlist-subtitle {
@@ -46,8 +48,11 @@
   align-self: center;
   font-family: var(--pixel-font);
   font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 1px;
   padding: 6px 14px;
   border: 3px solid var(--pixel-accent-dark);
+  box-shadow: 3px 3px 0 var(--pixel-shadow);
 }
 
 .wishlist-column-items {
@@ -71,21 +76,26 @@
   }
 }
 
+/* Layout, plus !important overrides for Card's own default padding/gap
+   (from the base shadcn Card, which we didn't write and is sized for
+   normal-width cards, not these compact 150px ones). */
 .item-card {
-  background: var(--pixel-card);
-  border: 3px solid var(--pixel-accent-dark);
-  box-shadow: 3px 3px 0 var(--pixel-shadow);
-  padding: 8px;
-  display: flex;
+  display: flex !important;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 6px;
+  gap: 6px !important;
+  padding: 8px !important;
   width: 100%;
   max-width: 150px;
   margin: 0 auto;
   height: 100%;
   transition: opacity 0.2s ease;
+}
+
+.item-card > * {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }
 
 .item-card-purchased {
@@ -106,20 +116,18 @@
   image-rendering: pixelated;
 }
 
-.item-body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  flex: 1;
-  width: 100%;
-}
-
 .item-header {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 6px;
+  width: 100%;
+}
+
+.item-content {
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
 .item-name {
@@ -149,51 +157,32 @@
 
 .item-buttons {
   margin-top: auto;
-  display: flex;
-  gap: 8px;
+  display: flex !important;
+  gap: 10px !important;
   width: 100%;
 }
 
+/* Force-shrink: Button's own "sm" size (h-9 px-3) and its 4px pixel
+   box-shadow margin are both sized for normal buttons, not two
+   side-by-side buttons in a 150px card. */
 .item-mark,
 .item-unmark {
   flex: 1;
-  padding: 6px 3px;
-  font-family: var(--pixel-font);
-  font-size: 7px;
-  line-height: 1.4;
-  border: 2px solid var(--pixel-accent-dark);
-  cursor: pointer;
-  background: var(--pixel-card);
-  color: var(--pixel-accent-dark);
-}
-
-.item-mark:disabled,
-.item-unmark:disabled {
-  cursor: default;
-  opacity: 0.55;
-}
-
-.item-mark-active {
-  background: var(--pixel-accent);
-  color: #fff;
-}
-
-.item-unmark-active {
-  background: var(--pixel-muted);
-  border-color: var(--pixel-purchased-text);
-  color: #fff;
-}
-
-.item-mark:not(:disabled):active,
-.item-unmark:not(:disabled):active {
-  transform: translate(2px, 2px);
+  height: auto !important;
+  min-width: 0;
+  padding: 4px 2px !important;
+  font-size: 8px !important;
+  --box-shadow-width: 2px;
 }
 
 .price-badge {
   font-family: var(--pixel-font);
   font-size: 10px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
   padding: 4px 6px;
   border: 2px solid var(--pixel-accent-dark);
+  box-shadow: 2px 2px 0 var(--pixel-shadow);
   white-space: nowrap;
   flex-shrink: 0;
 }

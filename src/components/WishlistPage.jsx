@@ -41,6 +41,7 @@ export default function WishlistPage() {
       <header className="wishlist-header">
         <h1 className="wishlist-title">Gillian's Wishlist </h1> 
         <p className="wishlist-subtitle">Yes I was procrastinating doing work when I made this :p</p>
+        <p className="wishlist-subtitle">press mark to "mark" as purchesed and "unmark" to undo this</p>
       </header>
 
       <div className="wishlist-columns">
