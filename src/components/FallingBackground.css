@@ -1,0 +1,51 @@
+.falling-background {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.falling-piece {
+  position: absolute;
+  top: -10%;
+  display: inline-block;
+  animation-name: fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+
+.piece-heart {
+  color: var(--pixel-accent);
+}
+
+.piece-star {
+  color: var(--pixel-gold);
+}
+
+.falling-piece-image {
+  width: 1em;
+  height: 1em;
+  display: block;
+  image-rendering: pixelated;
+}
+
+@keyframes fall {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate(var(--drift), 60vh) rotate(var(--spin));
+  }
+  100% {
+    transform: translate(0, 120vh) rotate(0deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .falling-piece {
+    animation: none;
+    opacity: 0.15 !important;
+  }
+}

@@ -1,0 +1,26 @@
+/* Pink pixel theme — drop this file in src/ and import it once in App.jsx */
+
+:root {
+  --pixel-bg: #fff0f6;
+  --pixel-card: #ffffff;
+  --pixel-accent: #ff5da2;
+  --pixel-accent-dark: #b8256e;
+  --pixel-accent-light: #ffd3e8;
+  --pixel-text: #4a2036;
+  --pixel-muted: #b06a8f;
+  --pixel-shadow: rgba(184, 37, 110, 0.25);
+  --pixel-gold: #f4b942;
+  --pixel-purchased-bg: #f2e8ee;
+  --pixel-purchased-text: #b7a3b0;
+  --pixel-font: 'Press Start 2P', ui-monospace, Consolas, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--pixel-bg);
+  font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+}
