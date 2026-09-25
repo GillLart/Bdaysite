@@ -43,9 +43,9 @@ export default function WishlistPage() {
   }));
 
   const columns = [
-    { tier: 1, label: '£: 2< price <10', items: items.filter((item) => item.price === 1) },
-    { tier: 2, label: '££: 10<= price <=20', items: items.filter((item) => item.price === 2) },
-    { tier: 3, label: '£££: 20< price', items: items.filter((item) => item.price === 3) },
+    { tier: 1, symbol: '£', label: '£: 2< price <10', items: items.filter((item) => item.price === 1) },
+    { tier: 2, symbol: '££', label: '££: 10<= price <=20', items: items.filter((item) => item.price === 2) },
+    { tier: 3, symbol: '£££', label: '£££: 20< price', items: items.filter((item) => item.price === 3) },
   ];
 
   if (!loaded) {
@@ -55,6 +55,16 @@ export default function WishlistPage() {
       </div>
     );
   }
+
+  const jumpLinks = columns.map((column) => (
+    <a
+      key={column.tier}
+      href={`#price-tier-${column.tier}`}
+      className={`wishlist-jump-link price-badge-${column.tier}`}
+    >
+      {column.symbol}
+    </a>
+  ));
 
   return (
     <div className="wishlist-page">
@@ -68,9 +78,17 @@ export default function WishlistPage() {
         </p>
       </header>
 
+      <nav className="wishlist-jump-nav" aria-label="Jump to price category">
+        {jumpLinks}
+      </nav>
+
       <div className="wishlist-columns">
         {columns.map((column) => (
-          <div className="wishlist-column" key={column.tier}>
+          <div
+            className="wishlist-column"
+            id={`price-tier-${column.tier}`}
+            key={column.tier}
+          >
             <div
               className={`wishlist-column-label price-badge-${column.tier}`}
             >

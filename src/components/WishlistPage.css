@@ -11,6 +11,13 @@
   text-align: center;
 }
 
+.wishlist-loading {
+  text-align: center;
+  color: var(--pixel-muted);
+  font-family: var(--pixel-font);
+  padding-top: 80px;
+}
+
 .wishlist-title {
   font-family: var(--pixel-font);
   font-size: 22px;
@@ -70,9 +77,64 @@
   opacity: 0.7;
 }
 
+/* Hidden by default — only shown once the layout collapses to a
+   single column below, where jumping between the 3 sections is
+   actually useful (otherwise all 3 are already visible side by side).
+   position: fixed keeps it pinned to the top of the screen at all
+   times, regardless of scroll position. */
+.wishlist-jump-nav {
+  display: none;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  padding: 10px 8px;
+  background: var(--pixel-bg);
+  border-bottom: 3px solid var(--pixel-accent-dark);
+}
+
+.wishlist-jump-link {
+  font-family: var(--pixel-font);
+  font-size: 10px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  padding: 6px 10px;
+  border: 2px solid var(--pixel-accent-dark);
+  box-shadow: 2px 2px 0 var(--pixel-accent-dark);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: box-shadow 0.08s ease, transform 0.08s ease;
+}
+
+.wishlist-jump-link:hover {
+  box-shadow: 1px 1px 0 var(--pixel-accent-dark);
+  transform: translate(1px, 1px);
+}
+
+.wishlist-jump-link:active {
+  box-shadow: none;
+  transform: translate(2px, 2px);
+}
+
 @media (max-width: 640px) {
+  .wishlist-page {
+    padding-top: 100px;
+  }
+
   .wishlist-columns {
     grid-template-columns: 1fr;
+  }
+
+  .wishlist-jump-nav {
+    display: flex;
+  }
+
+  .wishlist-column {
+    scroll-margin-top: 60px;
   }
 }
 
@@ -88,6 +150,7 @@
   padding: 8px !important;
   width: 100%;
   max-width: 150px;
+  min-width: 0;
   margin: 0 auto;
   height: 100%;
   transition: opacity 0.2s ease;
@@ -104,15 +167,19 @@
 
 .item-image-wrap {
   width: 100%;
+  min-width: 0;
   aspect-ratio: 1;
   overflow: hidden;
+  background: var(--pixel-bg);
   border: 3px solid var(--pixel-accent-light);
 }
 
 .item-image {
+  display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  max-width: 100%;
+  object-fit: contain;
   image-rendering: pixelated;
 }
 
@@ -173,13 +240,6 @@
   padding: 4px 2px !important;
   font-size: 8px !important;
   --box-shadow-width: 2px;
-}
-
-.wishlist-loading {
-  text-align: center;
-  color: var(--pixel-muted);
-  font-family: var(--pixel-font);
-  padding-top: 80px;
 }
 
 .price-badge {
