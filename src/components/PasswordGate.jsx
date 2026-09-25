@@ -15,10 +15,36 @@ import { auth } from '../firebase';
 import { GUEST_EMAIL } from '../authConfig';
 import './PasswordGate.css';
 
+// Open eye is your own PNG (see public/images/eye.png). Closed eye is
+// still a small hand-built pixel icon.
+function PixelEyeOpen() {
+  return (
+    <img
+      src="images\eye.png"
+      alt=""
+      width="16"
+      height="16"
+      className="gate-eye-icon"
+    />
+  );
+}
+
+function PixelEyeClosed() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 16 16" shapeRendering="crispEdges" fill="currentColor">
+      <rect x="0" y="6" width="16" height="2" />
+      <rect x="1" y="9" width="2" height="2" />
+      <rect x="7" y="9" width="2" height="2" />
+      <rect x="13" y="9" width="2" height="2" />
+    </svg>
+  );
+}
+
 export default function PasswordGate() {
   const [value, setValue] = useState('');
   const [shake, setShake] = useState(false);
   const [checking, setChecking] = useState(false);
+  const [revealed, setRevealed] = useState(false);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -51,7 +77,7 @@ export default function PasswordGate() {
               ✦♥ Birthday WIshlist ♥✦
             </CardTitle>
             <CardDescription className="gate-subtitle">
-              Whats the secret word? (≖_≖ )
+              Whats the secret word? ( ͠° ͟ʖ ͡°)
             </CardDescription>
           </CardHeader>
 
@@ -59,15 +85,25 @@ export default function PasswordGate() {
             <Label htmlFor="secret-word" className="gate-label">
               Secret word
             </Label>
-            <Input
-              id="secret-word"
-              className="gate-input"
-              type="text"
-              value={value}
-              onChange={(e) => setValue(e.target.value)}
-              placeholder="secret word..."
-              autoFocus
-            />
+            <div className="gate-input-wrap">
+              <Input
+                id="secret-word"
+                className="gate-input"
+                type={revealed ? 'text' : 'password'}
+                value={value}
+                onChange={(e) => setValue(e.target.value)}
+                placeholder="secret word..."
+                autoFocus
+              />
+              <button
+                type="button"
+                className="gate-input-reveal"
+                onClick={() => setRevealed((prev) => !prev)}
+                aria-label={revealed ? 'Hide secret word' : 'Show secret word'}
+              >
+                {revealed ? <PixelEyeClosed /> : <PixelEyeOpen />}
+              </button>
+            </div>
           </CardContent>
 
           <CardFooter className="gate-footer">
