@@ -77,7 +77,7 @@ export default function PasswordGate() {
               ✦♥ Birthday WIshlist ♥✦
             </CardTitle>
             <CardDescription className="gate-subtitle">
-              Whats the secret word? ( ͠° ͟ʖ ͡°)
+              Whats the secret word? (˵ ¬ᴗ¬˵)
             </CardDescription>
           </CardHeader>
 
