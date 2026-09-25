@@ -32,8 +32,8 @@ export default function WishlistPage() {
 
   const columns = [
     { tier: 1, label: '£: 2< price <10', items: items.filter((item) => item.price === 1) },
-    { tier: 2, label: '££: 10< price <30', items: items.filter((item) => item.price === 2) },
-    { tier: 3, label: '£££: 30< price', items: items.filter((item) => item.price === 3) },
+    { tier: 2, label: '££: 10<= price <=20', items: items.filter((item) => item.price === 2) },
+    { tier: 3, label: '£££: 20< price', items: items.filter((item) => item.price === 3) },
   ];
 
   return (

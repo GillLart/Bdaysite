@@ -17,14 +17,16 @@ export default function WishlistItem({ item, onSetPurchased }) {
             <PriceBadge tier={price} />
           </div>
 
-          <a
-            href={url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="item-link"
-          >
-            View item ↗
-          </a>
+          {url && (
+            <a
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="item-link"
+            >
+              View item ↗
+            </a>
+          )}
 
           <div className="item-buttons">
             <button
@@ -32,14 +34,14 @@ export default function WishlistItem({ item, onSetPurchased }) {
               onClick={() => onSetPurchased(item.id, true)}
               disabled={purchased}
             >
-              Mark as purchased
+              Mark
             </button>
             <button
               className={`item-unmark ${!purchased ? 'item-unmark-active' : ''}`}
               onClick={() => onSetPurchased(item.id, false)}
               disabled={!purchased}
             >
-              Unmark as purchased
+              Unmark
             </button>
           </div>
         </div>
