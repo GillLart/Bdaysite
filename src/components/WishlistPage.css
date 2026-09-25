@@ -175,6 +175,13 @@
   --box-shadow-width: 2px;
 }
 
+.wishlist-loading {
+  text-align: center;
+  color: var(--pixel-muted);
+  font-family: var(--pixel-font);
+  padding-top: 80px;
+}
+
 .price-badge {
   font-family: var(--pixel-font);
   font-size: 10px;
